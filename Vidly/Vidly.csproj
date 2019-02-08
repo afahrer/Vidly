@@ -259,6 +259,14 @@
     <Compile Include="Migrations\201901302122445_AddMovieData.Designer.cs">
       <DependentUpon>201901302122445_AddMovieData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902082031283_FixMovieModel.cs" />
+    <Compile Include="Migrations\201902082031283_FixMovieModel.Designer.cs">
+      <DependentUpon>201902082031283_FixMovieModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902082034138_DateAddNotNull.cs" />
+    <Compile Include="Migrations\201902082034138_DateAddNotNull.Designer.cs">
+      <DependentUpon>201902082034138_DateAddNotNull.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -396,6 +404,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901302122445_AddMovieData.resx">
       <DependentUpon>201901302122445_AddMovieData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902082031283_FixMovieModel.resx">
+      <DependentUpon>201902082031283_FixMovieModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902082034138_DateAddNotNull.resx">
+      <DependentUpon>201902082034138_DateAddNotNull.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
