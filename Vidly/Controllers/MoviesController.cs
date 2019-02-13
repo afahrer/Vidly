@@ -62,7 +62,10 @@ namespace Vidly.Controllers
                 return View("MovieForm", viewModel);
             }
             if (movie.Id == 0)
+            {
+                movie.dateAdded = DateTime.Now;
                 _context.Movies.Add(movie);
+            }
             else
             {
                 var movieInDb = _context.Movies.Single(m => m.Id == movie.Id);
@@ -81,7 +84,6 @@ namespace Vidly.Controllers
             {
                 return HttpNotFound();
             }
-
             return View(movie);
         }
     }
