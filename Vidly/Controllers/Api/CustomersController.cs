@@ -56,11 +56,10 @@ namespace Vidly.Controllers.Api
             var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
             if (customerInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
-
             Mapper.Map(customerDto, customerInDb);
-
             _context.SaveChanges();
-            return Ok();
+
+            return Ok(Mapper.Map<Customer, CustomerDto>(customerInDb));
         }
 
         //DELETE /api/customers/1
@@ -72,7 +71,7 @@ namespace Vidly.Controllers.Api
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             _context.Customers.Remove(customerInDb);
             _context.SaveChanges();
-            return Ok();
+            return Ok("Customer " + id + " has been deleted");
         }
     }
 }
