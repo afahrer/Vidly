@@ -44,8 +44,9 @@ namespace Vidly.Controllers.Api
                 movie.NumberAvailable--;
                 rental.Movie = movie;        
                 _context.Rentals.Add(rental);
+                _context.SaveChanges();
             }
-            _context.SaveChanges();
+            
 
             return Created(new Uri(Request.RequestUri + "/" + rental.Id), rentalDto);
         }
