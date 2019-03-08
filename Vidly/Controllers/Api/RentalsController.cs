@@ -32,23 +32,25 @@ namespace Vidly.Controllers.Api
         {
             if (!ModelState.IsValid)
                 return BadRequest();
-            Rental rental = new Rental();
-            rental.DateRented = DateTime.Now;
 
-            var customer = _context.Customers.Single(c => c.Id == rentalDto.CustomerId);
-            rental.Customer = customer;    
+            var customer = _context.Customers.Single(c => c.Id == rentalDto.CustomerId);  
                 
             foreach (var id in rentalDto.MovieIds)
             {
                 var movie = _context.Movies.Single(m => m.Id == id);
+                if (movie.NumberAvailable == 0)
+                    return BadRequest("Movie is not available");
                 movie.NumberAvailable--;
-                rental.Movie = movie;        
+                var rental = new Rental
+                {
+                    Movie = movie,
+                    Customer = customer,
+                    DateRented = DateTime.Now
+                };
                 _context.Rentals.Add(rental);
-                _context.SaveChanges();
             }
-            
-
-            return Created(new Uri(Request.RequestUri + "/" + rental.Id), rentalDto);
+            _context.SaveChanges();
+            return Ok();
         }
     }
 }
