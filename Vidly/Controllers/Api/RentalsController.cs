@@ -52,24 +52,5 @@ namespace Vidly.Controllers.Api
             _context.SaveChanges();
             return Ok();
         }
-        //Put /api/Rentals/id
-        [HttpPut]
-        public IHttpActionResult ReturnMovie(RentalDto rentalDto)
-        {
-            var rentalQuery = _context.Rentals.Include(c => c.Customer).Include(m => m.Movie);
-
-            foreach (var movieId in rentalDto.MovieIds)
-            {
-                rentalQuery = rentalQuery.Where(c => c.Customer.Id == rentalDto.CustomerId
-                                                         && c.Movie.Id == movieId
-                                                         && c.DateReturned == null);
-                var rental = rentalQuery.First();
-                rental.Movie.NumberAvailable++;
-                rental.DateReturned = DateTime.Now;
-            }
-
-            _context.SaveChanges();
-            return Ok();
-        }
     }
 }
